@@ -7,5 +7,8 @@
 }
 
 .header h1 {
+    font-size: 47px;
+    font-family: 'Varela Round', sans-serif;
     margin: 0;
+    padding-top: 1rem;
 }

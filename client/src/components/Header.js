@@ -5,7 +5,7 @@ import '../styles/header.css';
 const Header = () => (
     <div className="header">
         <div className="container">
-            <h1>noteboard</h1>
+            <h1>NotePage</h1>
         </div>
     </div>
 );
