@@ -1,11 +1,21 @@
+.notes__container {
+    display: flex;
+    flex: 1;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .note {
+    /* font-family: 'Ubuntu Condensed', sans-serif; */
     box-shadow: 0px 0px 5px rgba(78, 76, 80, 0.185);
     color: #969492;
-    margin: 0;
-    margin-bottom: 2rem;
     padding: 1rem 1rem;
     height: 20rem;
     width: 25rem;
+    flex-shrink: 0;
+    margin-bottom: 1.5rem;
+
 }
 
 .note__title {

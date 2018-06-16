@@ -6,7 +6,7 @@ import '../styles/note.css';
 
 const Note = (props) => {
     return (
-        <div class="note">
+        <div className="note">
             <i className="material-icons" onClick={() => props.dispatch(startDeleteNote(props.note._id))}>clear</i>
             <div onClick={() => props.dispatch(setSelected(props.note))}>
                 <div className="note__title">{props.note.title}</div>

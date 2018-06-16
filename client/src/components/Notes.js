@@ -6,12 +6,25 @@ import { setSelected } from '../actions/selectedNote';
 import '../styles/container.css';
 
 class Notes extends React.Component {
+    getExtraDivs = () => {
+        const extras = [];
+        const extraCount = this.props.notes.length % 4;
+        for (let i = 0; i < extraCount; i++) {
+            extras.push(<div style={{ width: '27rem', height: 0}} />);
+        }
+        console.log(extras.length);
+        return extras;
+    }
+    
     render() {
         return (
             <div className="container">
-                {this.props.notes.map((note) => {
-                    return <Note key={note._id} note={note} />;
-                })}
+                <div className="notes__container">
+                    {this.props.notes.map((note) => {
+                        return <Note key={note._id} note={note} />;
+                    })} 
+                    {this.getExtraDivs()}
+                </div>
                 <div>
                     <button 
                         onClick={() => {
