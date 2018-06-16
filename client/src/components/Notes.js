@@ -3,16 +3,15 @@ import { connect } from 'react-redux';
 import Note from './Note';
 import EditNote from './EditNote';
 import { setSelected } from '../actions/selectedNote';
+import '../styles/container.css';
 
 class Notes extends React.Component {
     render() {
         return (
-            <div>
-                <ul>
-                    {this.props.notes.map((note) => {
-                        return <Note key={note._id} note={note} />;
-                    })}
-                </ul>
+            <div className="container">
+                {this.props.notes.map((note) => {
+                    return <Note key={note._id} note={note} />;
+                })}
                 <div>
                     <button 
                         onClick={() => {

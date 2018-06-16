@@ -1,0 +1,15 @@
+.note {
+    box-shadow: 0px 0px 5px rgba(78, 76, 80, 0.185);
+    color: #969492;
+    margin: 0;
+    margin-bottom: 2rem;
+    padding: 1rem 1rem;
+    height: 20rem;
+    width: 25rem;
+}
+
+.note__title {
+    color: #5f5c5a;
+    font-weight: 400;
+    font-size: 2rem;
+}

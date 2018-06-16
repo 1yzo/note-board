@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Notes from './Notes';
+import '../styles/container.css';
 import { startSetNotes } from '../actions/notes';
+import Header from './Header';
 
 class App extends Component {
 	state = {
@@ -15,7 +17,7 @@ class App extends Component {
 	render() {
 		return (
     		<div>
-				<h1>Noteboard</h1>
+				<Header />
 				<Notes />
       		</div>
     	);
