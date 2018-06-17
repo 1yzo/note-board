@@ -18,7 +18,7 @@ class Notes extends React.Component {
         return (
             <div className="container">
                 <div className="notes__container">
-                    {this.props.selectedNote !== null && <EditNote />}
+                    {(this.props.selectedNote !== null && this.props.selectedNote.isAdding) && <EditNote />}
                     {this.props.notes.map((note) => {
                         return <Note key={note._id} note={note} />;
                     })} 

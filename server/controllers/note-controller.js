@@ -29,8 +29,8 @@ create = (req, res) => {
 };
 
 update = (req, res) => {
-    const { _id, edits } = req.body;
-    Note.where({ _id }).update({...edits})
+    const { id, edits } = req.body;
+    Note.where({ _id: id }).update({...edits})
         .then(() => res.json({_id, ...edits}))
         .catch(err => res.status(500).send(err));
 };

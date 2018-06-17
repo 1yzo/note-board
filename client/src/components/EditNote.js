@@ -51,7 +51,7 @@ class EditNote extends React.Component {
     
     render() {
         return (
-            <div className='note note--edit'>
+            <div className='note note--edit' onBlur={() => this.handleCancel()}>
                 <i className="material-icons" onClick={this.handleCancel}>clear</i>
                 <div>
                     <input 
