@@ -6,11 +6,11 @@ import '../styles/note.css';
 
 const Note = (props) => {
     return (
-        <div className="note">
+        <div className="note" onClick={() => props.dispatch(setSelected(props.note))}>
             <i className="material-icons" onClick={() => props.dispatch(startDeleteNote(props.note._id))}>clear</i>
-            <div onClick={() => props.dispatch(setSelected(props.note))}>
+            <div>
                 <div className="note__title">{props.note.title}</div>
-                <div>{props.note.author}</div>
+                <div>{props.note.date}</div>
                 <div>{props.note.content}</div>
             </div>
         </div>

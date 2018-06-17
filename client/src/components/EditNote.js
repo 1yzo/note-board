@@ -50,16 +50,6 @@ class EditNote extends React.Component {
         return (
             <div>
                 <div>
-                    <label>author: </label>
-                    <input 
-                        type="text"
-                        name="author"
-                        value={this.props.note.author}
-                        placeholder="author"
-                        onChange={this.handleChange}
-                    />
-                </div>
-                <div>
                     <label>title: </label>
                     <input 
                         type="text"

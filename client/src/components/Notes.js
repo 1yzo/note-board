@@ -10,9 +10,8 @@ class Notes extends React.Component {
         const extras = [];
         const extraCount = this.props.notes.length % 4;
         for (let i = 0; i < extraCount; i++) {
-            extras.push(<div style={{ width: '27rem', height: 0}} />);
+            extras.push(<div key={i} style={{ width: '27rem', height: 0}} />);
         }
-        console.log(extras.length);
         return extras;
     }
     
