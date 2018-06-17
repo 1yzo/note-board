@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { setSelected } from '../actions/selectedNote';
 import { startDeleteNote } from '../actions/notes';
 import '../styles/note.css';
+import '../styles/button.css';
 import moment from 'moment';
 import EditNote from './EditNote';
 
 class Note extends React.Component {
     state = {
-        isOverflowing: false
+        isOverflowing: false,
+        isExpanded: false
     };
 
     checkOverflow = (prevState = 'false') => {
@@ -37,19 +39,33 @@ class Note extends React.Component {
     
     render() {
         if (this.props.selectedNote && this.props.selectedNote._id === this.props.note._id) {
-            return <EditNote />;
+            return <EditNote isExpanded={this.state.isExpanded}/>;
         } else {
             return (
-                <div className="note">
+                <div 
+                    className={'note' + (this.state.isExpanded ? ' note--expanded' : '')}
+                    style={{display: this.props.siblingExpanded && (this.props.expandedSiblingId !== this.props.note._id) && 'none'}}
+                >
                     <div className="note__top-actions">
                         <i 
                             style={{marginRight: '3rem'}}
-                            className="material-icons" 
+                            className="material-icons button--icon" 
                             onClick={() => this.props.dispatch(startDeleteNote(this.props.note._id))}
                         >
                             clear
                         </i>
-                        {this.state.isOverflowing && <p>-></p>}
+                        {
+                            this.state.isOverflowing &&  
+                            <i 
+                                className="material-icons button--icon" 
+                                onClick={() => {
+                                    this.setState((prevState) => ({ isExpanded: !prevState.isExpanded }));
+                                    this.props.toggleExpand(this.props.note._id);
+                                }}
+                            >
+                                expand_more
+                            </i>
+                        }
                     </div>
                     <div onClick={() => this.props.dispatch(setSelected(this.props.note))} style={{ width: '100%', height: '170px'}}>
                         <div className="note__title">{this.props.note.title}</div>

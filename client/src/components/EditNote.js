@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setSelected, editSelected } from '../actions/selectedNote';
 import { editNote, startAddNote } from '../actions/notes';
 import '../styles/note.css';
+import '../styles/button.css';
 
 class EditNote extends React.Component {
     state = {
@@ -45,25 +46,27 @@ class EditNote extends React.Component {
         }
     }
 
-    handleEscape = (e) => {
+    handleKeyPress = (e) => {
         if (e.keyCode === 27) {
             this.handleCancel();
+        } else if (e.keyCode === 13) {
+            this.handleSave();
         }
     }
     
     componentDidMount() {
         this.setState(() => ({undoNote: this.props.note}));
-        window.addEventListener('keyup', this.handleEscape, false);
+        window.addEventListener('keyup', this.handleKeyPress, false);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('keyup', this.handleEscape, false);        
+        window.removeEventListener('keyup', this.handleKeyPress, false);        
     }
     
     render() {
         return (
-            <div className='note note--edit'>
-                <i className="material-icons" onClick={this.handleCancel}>clear</i>
+            <div className={'note note--edit' + (this.props.isExpanded ? ' note--expanded' : '')}>
+                <i className="material-icons button--icon" onClick={this.handleCancel}>clear</i>
                 <div>
                     <input 
                         type="text"
@@ -83,7 +86,7 @@ class EditNote extends React.Component {
                         onChange={this.handleChange}
                     />
                 </div>
-                <i className="material-icons" onClick={this.handleSave} style={{ alignSelf: 'end'}}>done</i>
+                <i className="material-icons button--icon" onClick={this.handleSave} style={{ alignSelf: 'end'}}>done</i>
 
             </div>
         );

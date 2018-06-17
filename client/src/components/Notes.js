@@ -5,13 +5,27 @@ import EditNote from './EditNote';
 import '../styles/container.css';
 
 class Notes extends React.Component {
+    state = {
+        childExpanded: false,
+        expandedChildId: undefined
+    }
+
+    toggleChildExpand = (childId) => {
+        this.setState((prevState) => ({ 
+            childExpanded: !prevState.childExpanded,
+            expandedChildId: childId
+        }));
+    }
+    
     getExtraDivs = () => {
-        const extras = [];
-        const extraCount = (this.props.notes.length % 4) + 1;
-        for (let i = 0; i < extraCount; i++) {
-            extras.push(<div key={i} style={{ width: '27rem', height: 0}} />);
+        if (!this.state.childExpanded) {
+            const extras = [];
+            const extraCount = (this.props.notes.length % 4) + 1;
+            for (let i = 0; i < extraCount; i++) {
+                extras.push(<div key={i} style={{ width: '27rem', height: 0}} />);
+            }
+            return extras;
         }
-        return extras;
     }
     
     render() {
@@ -20,7 +34,13 @@ class Notes extends React.Component {
                 <div className="notes__container">
                     {(this.props.selectedNote !== null && this.props.selectedNote.isAdding) && <EditNote />}
                     {this.props.notes.map((note) => {
-                        return <Note key={note._id} note={note} />;
+                        return <Note
+                                    key={note._id} 
+                                    note={note} 
+                                    toggleExpand={this.toggleChildExpand}
+                                    siblingExpanded={this.state.childExpanded}
+                                    expandedSiblingId={this.state.expandedChildId}
+                                 />;
                     })} 
                     {this.getExtraDivs()}
                 </div>

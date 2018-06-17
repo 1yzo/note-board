@@ -16,7 +16,7 @@ class App extends Component {
 
 	render() {
 		return (
-    		<div>
+    		<div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
 				<Header />
 				<Notes />
       		</div>

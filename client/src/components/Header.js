@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import '../styles/container.css';
 import '../styles/header.css';
+import '../styles/button.css';
 import { setSelected } from '../actions/selectedNote';
-
 
 const Header = (props) => (
     <div className="header">
@@ -11,7 +11,7 @@ const Header = (props) => (
             <div className="header__content">
                 <h1>NotePage</h1>
                 <i 
-                    className="material-icons"
+                    className="material-icons button--icon"
                     onClick={() => {
                         props.dispatch(setSelected({
                             isAdding: true,

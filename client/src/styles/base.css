@@ -20,7 +20,7 @@ button[disabled] {
     cursor: not-allowed;
 }
 
-#app {
+#root {
     height: 100%;
 }
 

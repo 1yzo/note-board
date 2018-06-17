@@ -1,0 +1,16 @@
+.button--icon {
+    cursor: pointer;
+    transition: transform 300ms ease-in-out;
+    max-width: 33px;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.button--icon:hover {
+    transform: scale(1.35);
+}
+
+.button--icon:active {
+    transform: scale(1);
+}
