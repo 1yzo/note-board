@@ -44,14 +44,25 @@ class EditNote extends React.Component {
             this.props.dispatch(editNote(this.props.note._id, edits));
         }
     }
+
+    handleEscape = (e) => {
+        if (e.keyCode === 27) {
+            this.handleCancel();
+        }
+    }
+    
     componentDidMount() {
         this.setState(() => ({undoNote: this.props.note}));
+        window.addEventListener('keyup', this.handleEscape, false);
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('keyup', this.handleEscape, false);        
+    }
     
     render() {
         return (
-            <div className='note note--edit' onBlur={() => this.handleCancel()}>
+            <div className='note note--edit'>
                 <i className="material-icons" onClick={this.handleCancel}>clear</i>
                 <div>
                     <input 
@@ -60,7 +71,8 @@ class EditNote extends React.Component {
                         value={this.props.note.title}
                         placeholder="Title"
                         onChange={this.handleChange}
-                    />
+                        autoFocus
+                    />  
                 </div>
                 <div>
                     <textarea
