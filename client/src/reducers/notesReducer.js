@@ -3,7 +3,7 @@ export default (state = [], action) => {
         case 'SET_NOTES':
             return action.notes;
         case 'ADD_NOTE':
-            return [...state, action.note];
+            return [action.note, ...state];
         case 'EDIT_NOTE':
             return state.map((note) => {
                 if (note._id === action.id) {

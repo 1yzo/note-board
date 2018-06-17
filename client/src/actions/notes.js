@@ -8,7 +8,7 @@ export const startSetNotes = () => {
         return fetch('api/notes')
             .then(res => res.json())
             .then(res => {
-                dispatch(setNotes(res));
+                dispatch(setNotes(res.reverse()));
             });
     }
 };

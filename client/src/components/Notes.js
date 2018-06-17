@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Note from './Note';
 import EditNote from './EditNote';
-import { setSelected } from '../actions/selectedNote';
 import '../styles/container.css';
 
 class Notes extends React.Component {
     getExtraDivs = () => {
         const extras = [];
-        const extraCount = this.props.notes.length % 4;
+        const extraCount = (this.props.notes.length % 4) + 1;
         for (let i = 0; i < extraCount; i++) {
             extras.push(<div key={i} style={{ width: '27rem', height: 0}} />);
         }
@@ -19,25 +18,11 @@ class Notes extends React.Component {
         return (
             <div className="container">
                 <div className="notes__container">
+                    {this.props.selectedNote !== null && <EditNote />}
                     {this.props.notes.map((note) => {
                         return <Note key={note._id} note={note} />;
                     })} 
                     {this.getExtraDivs()}
-                </div>
-                <div>
-                    <button 
-                        onClick={() => {
-                            this.props.dispatch(setSelected({
-                                isAdding: true,
-                                title: '',
-                                author: '',
-                                content: ''
-                            }))
-                        }}
-                    >
-                         Add Note
-                    </button>
-                    {this.props.selectedNote !== null && <EditNote />}
                 </div>
             </div>
         );

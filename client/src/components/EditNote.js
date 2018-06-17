@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setSelected, editSelected } from '../actions/selectedNote';
 import { editNote, startAddNote } from '../actions/notes';
+import '../styles/note.css';
 
 class EditNote extends React.Component {
     state = {
@@ -9,7 +10,7 @@ class EditNote extends React.Component {
     };
 
     handleSave = () => {
-        const { isAdding = false, _id: id = '', __v, ...edits } = this.props.note;
+        const { isAdding = false, _id: id = '', __v, date, ...edits } = this.props.note;
         const reqBody = { 
             id,
             edits
@@ -30,7 +31,7 @@ class EditNote extends React.Component {
     }
 
     handleCancel = () => {
-        const {__v, _id: id, ...edits} = this.state.undoNote;
+        const {__v, _id: id, date, ...edits} = this.state.undoNote;
         this.props.dispatch(editNote(id, edits));
         this.props.dispatch(setSelected(null));
     }
@@ -39,7 +40,9 @@ class EditNote extends React.Component {
         const edits = {};
         edits[e.target.name] = e.target.value;
         this.props.dispatch(editSelected(edits));
-        this.props.dispatch(editNote(this.props.note._id, edits));
+        if (!this.props.isAdding) {
+            this.props.dispatch(editNote(this.props.note._id, edits));
+        }
     }
     componentDidMount() {
         this.setState(() => ({undoNote: this.props.note}));
@@ -48,20 +51,19 @@ class EditNote extends React.Component {
     
     render() {
         return (
-            <div>
+            <div className='note note--edit'>
+                <i className="material-icons" onClick={this.handleCancel}>clear</i>
                 <div>
-                    <label>title: </label>
                     <input 
                         type="text"
                         name="title"
                         value={this.props.note.title}
-                        placeholder="title"
+                        placeholder="Title"
                         onChange={this.handleChange}
                     />
                 </div>
                 <div>
-                    <label>content: </label>
-                    <input 
+                    <textarea
                         type="text"
                         name="content"
                         value={this.props.note.content}
@@ -69,8 +71,8 @@ class EditNote extends React.Component {
                         onChange={this.handleChange}
                     />
                 </div>
-                <button onClick={this.handleSave}>Save</button>
-                <button onClick={this.handleCancel}>Cancel</button>
+                <i className="material-icons" onClick={this.handleSave} style={{ alignSelf: 'end'}}>done</i>
+
             </div>
         );
     }
