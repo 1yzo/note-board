@@ -7,7 +7,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "if [$NODE_ENV == 'production']; then node ./server/index.js; else nodemon ./server/index.js; fi",
+    "dev": "nodemon ./server/index.js",
+    "start": "node ./server/index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
