@@ -22,10 +22,18 @@ class Note extends React.Component {
                     this.setState((prevState) => ({ isOverflowing : true }));
                 }
             } else {
-                if (prevState.isOverflowing !== false) {
-                    this.setState((prevState) => ({ isOverflowing : false }));
+                if (ref.clientHeight <= 109) {
+                    if (prevState.isOverflowing !== false) {
+                        this.setState((prevState) => ({ isOverflowing : false }));
+                    }
                 }
             }
+        }
+    }
+
+    handleTransitionEnd = (e) => {
+        if (e.target.classList.contains('note') && !e.target.classList.contains('note--expanded')) {
+            this.checkOverflow();
         }
     }
 
@@ -45,6 +53,7 @@ class Note extends React.Component {
                 <div 
                     className={'note' + (this.state.isExpanded ? ' note--expanded' : '')}
                     style={{display: this.props.siblingExpanded && (this.props.expandedSiblingId !== this.props.note._id) && 'none'}}
+                    onTransitionEnd={this.handleTransitionEnd}
                 >
                     <div className="note__top-actions">
                         <i 
@@ -55,7 +64,7 @@ class Note extends React.Component {
                             clear
                         </i>
                         {
-                            this.state.isOverflowing &&  
+                            (this.state.isOverflowing || this.state.isExpanded) &&  
                             <i 
                                 className="material-icons button--icon" 
                                 onClick={() => {
@@ -67,13 +76,16 @@ class Note extends React.Component {
                             </i>
                         }
                     </div>
-                    <div onClick={() => this.props.dispatch(setSelected(this.props.note))} style={{ width: '100%', height: '170px'}}>
+                    <div onClick={() => this.props.dispatch(setSelected(this.props.note))} style={{ width: '100%'}}>
                         <div className="note__title">{this.props.note.title}</div>
                         <div className="note__date">{moment(this.props.note.date).format('LL')}</div>
                         <div
                             ref={el => {this.contentRef = el}}
                             className="note__content"
-                        >{this.props.note.content}</div>
+                            
+                        >
+                            {this.props.note.content}
+                        </div>
                     </div>
                 </div>
             );

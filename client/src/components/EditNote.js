@@ -77,15 +77,13 @@ class EditNote extends React.Component {
                         autoFocus
                     />  
                 </div>
-                <div>
-                    <textarea
-                        type="text"
-                        name="content"
-                        value={this.props.note.content}
-                        placeholder="content"
-                        onChange={this.handleChange}
-                    />
-                </div>
+                <textarea
+                    type="text"
+                    name="content"
+                    value={this.props.note.content}
+                    placeholder="content"
+                    onChange={this.handleChange}
+                />
                 <i className="material-icons button--icon" onClick={this.handleSave} style={{ alignSelf: 'end'}}>done</i>
 
             </div>
