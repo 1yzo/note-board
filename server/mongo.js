@@ -3,7 +3,7 @@ const env = require('./secrets');
 
 mongoose.Promise = global.Promise;
 
-const mongoUri = `mongodb://${env.user}:${env.password}@${env.link}`;
+const mongoUri = `mongodb://${process.env.USER || env.user}:${process.env.PASSWORD || env.password}@${process.env.LINK || env.link}`;
 
 const connect = () => {
     return mongoose.connect(mongoUri);
