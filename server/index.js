@@ -7,12 +7,12 @@ const index = require('./routes/index');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '..', 'client', 'build', 'static')));
+app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
 app.use(bodyParser.json());
 app.use('/api', index);
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'public', 'index.html'));
 });
 
 const port = process.env.PORT || 3001;

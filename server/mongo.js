@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
-// const env = require('./secrets');
+let secret;
+
+if (!process.env.NODE_ENV) {
+    secret = require('./secrets');
+}
 
 mongoose.Promise = global.Promise;
 
-const mongoUri = `mongodb://${process.env.USER || env.user}:${process.env.PASSWORD || env.password}@${process.env.LINK || env.link}`;
+const mongoUri = `mongodb://${process.env.USER || secret.user}:${process.env.PASSWORD || secret.password}@${process.env.LINK || secret.link}`;
 
 const connect = () => {
     return mongoose.connect(mongoUri);
