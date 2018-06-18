@@ -63,6 +63,7 @@
 .note__content {
     color: #5f5c5a;
     max-height: 110px;
+    min-height: 106px;
     flex: 1;
     overflow: hidden;
 }
