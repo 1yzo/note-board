@@ -6,12 +6,8 @@ import { startSetNotes } from '../actions/notes';
 import Header from './Header';
 
 class App extends Component {
-	state = {
-		testResult: '' 
-	}
-
 	componentDidMount() {
-		this.props.dispatch(startSetNotes());
+		// this.props.dispatch(startSetNotes());
 	}
 
 	render() {

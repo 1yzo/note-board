@@ -85,3 +85,11 @@
     overflow: auto;
     max-height: 100%;
 }
+
+.arrow {
+    transition: transform 300 ease-in-out;
+}
+
+.arrow--expanded {
+    transform: rotate(180deg);
+}

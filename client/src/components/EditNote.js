@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setSelected, editSelected } from '../actions/selectedNote';
-import { editNote, startAddNote } from '../actions/notes';
+import { editNote, addNote } from '../actions/notes';
 import '../styles/note.css';
 import '../styles/button.css';
 
@@ -17,17 +17,13 @@ class EditNote extends React.Component {
             edits
         };
         if (!!isAdding) {
-            this.props.dispatch(startAddNote({ 
+            this.props.dispatch(addNote({ 
                 ...edits
-            })).then(() => this.props.dispatch(setSelected(null)));
+            }));
+            this.props.dispatch(setSelected(null));
         } else {
-            fetch('api/note', {
-                method: 'PUT',
-                body: JSON.stringify(reqBody),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            }).then(() => this.props.dispatch(setSelected(null)));
+            this.props.dispatch(editNote(reqBody));
+            this.props.dispatch(setSelected(null));
         }   
     }
 

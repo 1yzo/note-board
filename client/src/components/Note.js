@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { setSelected } from '../actions/selectedNote';
-import { startDeleteNote } from '../actions/notes';
+import { deleteNote } from '../actions/notes';
 import '../styles/note.css';
 import '../styles/button.css';
 import moment from 'moment';
@@ -59,14 +59,14 @@ class Note extends React.Component {
                         <i 
                             style={{marginRight: '3rem'}}
                             className="material-icons button--icon" 
-                            onClick={() => this.props.dispatch(startDeleteNote(this.props.note._id))}
+                            onClick={() => this.props.dispatch(deleteNote(this.props.note._id))}
                         >
                             clear
                         </i>
                         {
                             (this.state.isOverflowing || this.state.isExpanded) &&  
                             <i 
-                                className="material-icons button--icon" 
+                                className={"material-icons button--icon arrow" + (this.state.isExpanded ? ' arrow--expanded' : '')} 
                                 onClick={() => {
                                     this.setState((prevState) => ({ isExpanded: !prevState.isExpanded }));
                                     this.props.toggleExpand(this.props.note._id);
