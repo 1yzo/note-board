@@ -66,7 +66,7 @@ class Note extends React.Component {
                         {
                             (this.state.isOverflowing || this.state.isExpanded) &&  
                             <i 
-                                className={"material-icons button--icon arrow" + (this.state.isExpanded ? ' arrow--expanded' : '')} 
+                                className={"material-icons arrow" + (this.state.isExpanded ? ' arrow--expanded' : ' button--icon')} 
                                 onClick={() => {
                                     this.setState((prevState) => ({ isExpanded: !prevState.isExpanded }));
                                     this.props.toggleExpand(this.props.note._id);
