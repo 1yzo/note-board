@@ -11,7 +11,7 @@ const Header = (props) => (
             <div className="header__content">
                 <h1>NotePage</h1>
                 <i 
-                    className="material-icons button--icon"
+                    className="material-icons button--icon add-button"
                     onClick={() => {
                         props.dispatch(setSelected({
                             isAdding: true,

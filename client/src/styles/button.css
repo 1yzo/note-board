@@ -8,9 +8,5 @@
 }
 
 .button--icon:hover {
-    transform: scale(1.35);
-}
-
-.button--icon:active {
-    transform: scale(1);
+    transform: scale(1.2);
 }
