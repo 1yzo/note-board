@@ -13,6 +13,8 @@
 
 .arrow {
     transition: transform 300ms ease-in-out;
+    animation: rotate-back 500ms ease-in-out 1 forwards;
+    
     cursor: pointer;
 }
 
